@@ -21,3 +21,14 @@ The actual implementation uses a default of `SHA512`, split into blocks of 128 b
 The hashes are assumed to be hexadecimal string outputs. There is no explicit checking that the length supplied or function supplied matches the spec, all inputs are assumed to conform to the requirements spec-d in the code.
 
 The wikipedia page details possible implementations of a bloom filter which supports removal of entries (also probabilistic), but I've chosen to implement the regular version, which only supports `add`ing of entries and `check`ing of if entries have been added already.
+
+# Spell Checking
+A simple script was implemented to perform spell-checking, as suggested in http://codekata.com/kata/kata05-bloom-filters/. Important to note is that the paths are all relative, assuming you are at the root of the project. Variable results are available, but given the number of words provided in `wordlist.txt`, the number of bits must be much higher than the default for meaningful results.
+
+```
+(semantic) vagrant:bloom-filter/ (master*) $ python spell_check.py text/body.txt --num-bits 5000000
+Misspelled words: ['festing', 'sdlkfj', 'tre', 'wond', 'goned', 'sdfweew', 'wekflj', 'wejfhn']
+
+(semantic) vagrant:bloom-filter/ (master*) $ python spell_check.py text/body.txt --num-bits 5000000 --dictionary text/bad-dict.txt
+Misspelled words: []
+```

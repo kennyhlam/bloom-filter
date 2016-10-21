@@ -10,7 +10,7 @@ When you're checking for membership of some value, <strong>v'</strong>, you can 
 - for each of these <strong>k</strong> hash values of <strong>v'</strong>, if all the corresponding bits in <strong>b</strong> are 1, it's likely to have been added into the bloom filter
 - if you encounter even a single 0 among the <strong>k</strong> hash values, then you know for sure it is not in the bloom filter
 
-In this way, the Bloom filter is a probabilistic data structure, and you can get false positives sometimes if the bits for <strong>v'</strong> have all been set to be 1 by some other <strong>v</strong>.
+In this way, the Bloom filter is a probabilistic data structure, and you can get false positives sometimes if the bits for <strong>v'</strong> have all been set to be 1 by some other <strong>v</strong>. However, you will never get a false negative since Bloom filters don't support member removal (aka if you set the bits for some <strong>v</strong> to be 1, they'll always stay that way).
 
 # Implementation
 - python (2.7.12)

@@ -5,7 +5,7 @@ import argparse
 
 parser = argparse.ArgumentParser(
     description='Spell checking utility for a body of text using a list' +
-    'of correctly spelled words'
+    ' of correctly spelled words'
 )
 
 parser.add_argument('text_file', metavar='TXT_FILE', type=str,

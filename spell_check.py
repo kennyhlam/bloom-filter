@@ -14,7 +14,7 @@ parser.add_argument('--num-bits', metavar='BITARRAY_LENGTH', type=int,
                     dest='num_bits',
                     help='Number of bits in the bitarray of the bloom filter')
 parser.add_argument('--dictionary', metavar='DICTIONARY', type=str,
-                    dest='dictionary', default='text/wordlist.txt',
+                    dest='dictionary', default='text/wordlist-utf8.txt',
                     help='Name of file with a list of correctly spelled words')
 
 args = parser.parse_args()

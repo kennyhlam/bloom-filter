@@ -3,7 +3,7 @@ Python implementation of a bloom filter: https://en.wikipedia.org/wiki/Bloom_fil
 In a nutshell, the basic algorithm is to:
 - have a bitarray, <strong>b</strong>, initialized to all 0's
 - take a value, <strong>v</strong>, and hash it with <strong>k</strong> hash functions
-- for each of these <strong>k</strong> hash values of <strong>v</strong>, set the corresponding bit in <strong>b</strong> to be 1
+- for each of these <strong>k</strong> hash values of <strong>v</strong>, set the corresponding bits in <strong>b</strong> to be 1
 
 When you're checking for membership of some value, <strong>v'</strong>, you can check by:
 - hashing <strong>v'</strong> the same <strong>k</strong> times

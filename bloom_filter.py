@@ -21,7 +21,7 @@ class BloomFilter:
         (func) hashes - function which produces an array of hash values
                         each hash value must be a hexadecimal string
         '''
-        self.bitarray = [0]*k
+        self.bitarray = [False]*k
         if hashes:
             self.hashes = hashes
         else:
@@ -58,7 +58,7 @@ class BloomFilter:
         '''
         for h in self.hashes(member):
             idx = int(h, 16) % len(self.bitarray)
-            self.bitarray[idx] = 1
+            self.bitarray[idx] = True
 
     def check(self, member):
         '''
@@ -73,6 +73,6 @@ class BloomFilter:
         '''
         for h in self.hashes(member):
             idx = int(h, 16) % len(self.bitarray)
-            if self.bitarray[idx] != 1:
+            if self.bitarray[idx] != True:
                 return False
         return True

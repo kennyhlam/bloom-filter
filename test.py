@@ -15,7 +15,7 @@ class TestBloomFilter(unittest.TestCase):
 
     def test_defaults(self):
         b = BloomFilter()
-        self.assertTrue(len(b.bitmap) == 10000)
+        self.assertTrue(len(b.bitarray) == 10000)
         self.assertTrue(b.hashes == BloomFilter.default_hashes)
 
     def test_add_check(self):
@@ -25,24 +25,24 @@ class TestBloomFilter(unittest.TestCase):
         self.assertTrue(b.check('dummy'))
 
         b = BloomFilter()
-        for i in xrange(len(b.bitmap)):
+        for i in xrange(len(b.bitarray)):
             inp = hex_str(i)
             b.add(inp)
             self.assertTrue(b.check(inp))
 
-    def test_small_bitmap(self):
+    def test_small_bitarray(self):
         b = BloomFilter(k=1)
         self.assertFalse(b.check('dummy'))
         b.add('dummy')
         self.assertTrue(b.check('dummy'))
-        # bitmap length of 1, means everything should match
+        # bitarray length of 1, means everything should match
         self.assertTrue(b.check('not-dummy'))
 
     def test_hash_collisions(self):
         b = BloomFilter(hashes=lambda x: [x])
         b.add(hex_str(1))
         # this collides cause it's also offset by 1
-        collision = hex_str(len(b.bitmap)+1)
+        collision = hex_str(len(b.bitarray)+1)
         self.assertTrue(b.check(collision))
 
     def test_check_failures(self):
@@ -62,7 +62,7 @@ class TestBloomFilter(unittest.TestCase):
                     hashlib.sha256(x).hexdigest()]
 
         b = BloomFilter(hashes=f)
-        for i in xrange(len(b.bitmap)):
+        for i in xrange(len(b.bitarray)):
             inp = hex_str(i)
             b.add(inp)
             self.assertTrue(b.check(inp))
